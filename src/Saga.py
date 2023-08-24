@@ -6,6 +6,7 @@ class Saga:
         self.titles = titles
         self.price_rules = price_rules
 
+
     def get_price_and_count(self, shopping_list):
         if (len(self.titles) == 0):
             return (0, 0)
@@ -13,20 +14,34 @@ class Saga:
         if (len(shopping_list) == 0):
             return (0, 0)
 
-        dvd_of_saga_in_shopping_list = intersection(shopping_list, self.titles)
-        number_dvd_of_saga_in_shopping_list = len(dvd_of_saga_in_shopping_list)
+        saga = intersection(shopping_list, self.titles)
+        count_saga = len(saga)
 
-        distinct_dvd_of_saga_in_shopping_list = list(set(dvd_of_saga_in_shopping_list))
-        number_distinct_dvd_of_saga_in_shopping_list = len(distinct_dvd_of_saga_in_shopping_list)
+        distinct_saga = list(set(saga))
+        count_distinct_saga = len(distinct_saga)
 
-        one_dvd_price = self.get_price_from_distinct(number_distinct_dvd_of_saga_in_shopping_list)
+        price_one_saga = self.get_price_from_distinct(count_distinct_saga)
         return (
-            one_dvd_price * number_dvd_of_saga_in_shopping_list,
-            number_dvd_of_saga_in_shopping_list
+            price_one_saga * count_saga,
+            count_saga
         )
+
 
     def get_price_from_distinct(self, distinct_count):
         try:
             return self.price_rules[distinct_count - 1]
         except KeyError:
-            return DEFAULT_DVD_PRICE
+            return DEFAULT_DVD_PRICE   
+
+
+    @staticmethod
+    def get_all_price_and_count(shopping_list, saga_list):
+        price_saga = 0
+        count_saga = 0
+
+        for saga in saga_list:
+            (price_current_saga, count_current_saga) = saga.get_price_and_count(shopping_list)
+            price_saga = price_saga + price_current_saga
+            count_saga = count_saga + count_current_saga
+
+        return (price_saga, count_saga)

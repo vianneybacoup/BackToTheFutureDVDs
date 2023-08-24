@@ -1,5 +1,5 @@
 # Input logic
-EOF_SHOPPING_CART_LIST = ''
+END_OF_INPUT_SHOPPING_LIST = ''
 
 # DVD price logic
 DEFAULT_DVD_PRICE = 20
