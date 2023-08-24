@@ -3,22 +3,7 @@ from .Saga import Saga
 from .constants import DEFAULT_DVD_PRICE, END_OF_INPUT_SHOPPING_LIST
 
 
-saga_list = [
-    Saga([
-        "Back to the Future 1",
-        "Back to the Future 2",
-        "Back to the Future 3"
-    ], [
-        15,
-        15 * 0.9,
-        15 * 0.8
-    ])
-]
-
-
-def shopping_cart_price_calculation():
-    shopping_list = shopping_list_from_input()
-
+def shopping_cart_price_calculation(shopping_list, saga_list):
     (price_saga, count_saga) = Saga.get_all_price_and_count(shopping_list, saga_list)
 
     count_not_saga = len(shopping_list) - count_saga
