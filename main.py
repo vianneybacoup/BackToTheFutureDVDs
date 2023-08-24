@@ -16,6 +16,10 @@ saga_list = [
 
 
 if __name__ == '__main__':
+    print("""
+          Enter your movie shopping list (one row per movie).
+          Enter an empty row when you listed everything.
+    """)
     shopping_list = shopping_list_from_input()
 
-    print(shopping_cart_price_calculation(shopping_list, saga_list))
+    print("Price of your shopping cart:", shopping_cart_price_calculation(shopping_list, saga_list))
